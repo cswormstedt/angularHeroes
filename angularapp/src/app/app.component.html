@@ -1,0 +1,15 @@
+<div>
+
+  <label>Name: {{name}}<br></label>
+  <input [(ngModel)]="myHero.name" placeholder="Name" />
+  <input [(ngModel)]="myHero.power" placeholder="Power"/>
+  <input [(ngModel)]="myHero.nemesis" placeholder="Nemesis"/>
+  <button (click)="postHero()">submit</button>
+
+  <ul>
+  	<li *ngFor="let hero of heroes">
+  		{{hero.name}}
+  	</li>
+  </ul>
+
+</div>

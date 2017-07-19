@@ -1,0 +1,5 @@
+CREATE DATABASE hero2;
+
+\c
+
+CREATE TABLE heroes (id SERIAL PRIMARY KEY, name VARCHAR(255), power VARCHAR(255), nemesis VARCHAR(255));
