@@ -15,7 +15,8 @@ class HeroController < Sinatra::Base
 	get '/' do
 		response['Access-Control-Allow-Origin']= '*'
 		content_type :json
-		Hero.all.to_json
+        heroes = Hero.all.sort_by {|hero| hero.id}
+		heroes.to_json
 	end
 
 	get '/:id' do
@@ -23,7 +24,7 @@ class HeroController < Sinatra::Base
     	content_type :json
     	id = params[:id]
     	hero = Hero.find(id)
-    	{hero: hero}.to_json
+    	hero.to_json
 	end
 
 	post '/' do
@@ -44,7 +45,9 @@ class HeroController < Sinatra::Base
     	hero_props = JSON.parse(request.body.read)
     	hero.update_attributes(hero_props)
     	hero.save
-    	hero.to_json
+        heroes = Hero.all.sort_by {|hero| hero.id}
+        heroes.to_json
+
 	end
 
 	delete '/:id' do
@@ -53,7 +56,8 @@ class HeroController < Sinatra::Base
     	id = params[:id]
     	hero = Hero.find(id)
     	hero.destroy
-    	Hero.all.to_json
+    	heroes = Hero.all.sort_by {|hero| hero.id}
+        heroes.to_json
 	end
 
 
